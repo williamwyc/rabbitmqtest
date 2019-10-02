@@ -24,6 +24,7 @@ router.post('/',jsonParser,function(req,res){
             });
             channel.publish('hw4', key, new Buffer(msg));//exchange, key, buffer
             console.log("Sent %s: '%s'", key, msg);
+            res.json({});
           });
     })
 })
