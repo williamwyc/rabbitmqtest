@@ -11,8 +11,8 @@ app.use('/speak', speak)
 
 amqp.connect('amqp://localhost', function(err, conn) {
   conn.createChannel(function(err, ch) {
-    if (error1) {
-        throw error1;
+    if (err) {
+        throw err;
     }
     ch.assertExchange('hw4', 'direct', {durable: false})
 
