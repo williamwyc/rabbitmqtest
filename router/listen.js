@@ -37,10 +37,6 @@ router.post('/',jsonParser,function(req,res){
                     noAck: true
                 });
             });
-            setTimeout(function() { 
-                connection.close(); 
-                process.exit(0) 
-              }, 500);
         });
     });
 })
