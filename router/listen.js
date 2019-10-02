@@ -34,6 +34,7 @@ router.post('/',jsonParser,function(req,res){
                 channel.consume(q.queue, function(msg) {
                     console.log("%s: '%s'", msg.fields.routingKey, msg.content.toString());
                     res.json({'msg': msg.content.toString()})
+                    channel.close() 
                 });
             });
         });
