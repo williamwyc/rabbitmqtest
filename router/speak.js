@@ -7,7 +7,6 @@ var jsonParser = bodyParser.json()
 var amqp = require('amqplib/callback_api');
 
 router.post('/',jsonParser,function(req,res){
-    data = req.body
     amqp.connect('amqp://localhost', function(error0, connection){
         if (error0) {
             throw error0;
@@ -16,6 +15,7 @@ router.post('/',jsonParser,function(req,res){
             if (error1) {
               throw error1;
             }
+            var data = req.body
             var key = data.key;
             var msg = data.msg;
         

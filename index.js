@@ -15,7 +15,7 @@ amqp.connect('amqp://localhost', function(err, conn) {
         throw err;
     }
     ch.assertExchange('hw4', 'direct', {durable: false})
-
+    console.log("Assert Exchange HW4")
   });
   
 });

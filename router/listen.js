@@ -7,7 +7,6 @@ var jsonParser = bodyParser.json()
 var amqp = require('amqplib/callback_api');
 
 router.post('/',jsonParser,function(req,res){
-    data = req.body
     amqp.connect('amqp://localhost', function(error0, connection) {
         if (error0) {
             throw error0;
@@ -26,8 +25,8 @@ router.post('/',jsonParser,function(req,res){
                     throw error2;
                 }
                 console.log('Listening...');
-                key = data.keys
-                console.log("Keys:")
+                var data = req.body
+                var key = data.keys
                 console.log(key);
                 for(var i = 0;i<key.length; i++){
                     channel.bindQueue(q.queue, "hw4", key[i]);
@@ -35,7 +34,6 @@ router.post('/',jsonParser,function(req,res){
                 channel.consume(q.queue, function(msg) {
                     console.log("%s: '%s'", msg.fields.routingKey, msg.content.toString());
                     res.json({'msg': msg.content.toString()})
-                    channel.close();
                 });
             });
         });
