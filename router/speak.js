@@ -22,7 +22,7 @@ router.post('/',jsonParser,function(req,res){
             channel.assertExchange('hw4', 'direct', {
               durable: false
             });
-            channel.publish('hw4', key, Buffer.from(msg));//exchange, key, buffer
+            channel.publish('hw4', key, new Buffer(msg));//exchange, key, buffer
             console.log("Sent %s: '%s'", key, msg);
           });
         
