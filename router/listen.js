@@ -27,14 +27,13 @@ router.post('/',jsonParser,function(req,res){
                 }
                 console.log('Listening...');
                 key = data.keys
+                console.log(key.toString());
                 for(var i = 0;i<key.length; i++){
                     channel.bindQueue(q.queue, "hw4", key[i]);
                 }
                 channel.consume(q.queue, function(msg) {
                     console.log("%s: '%s'", msg.fields.routingKey, msg.content.toString());
                     res.json({'msg': msg.content.toString()})
-                }, {
-                    noAck: true
                 });
             });
         });
